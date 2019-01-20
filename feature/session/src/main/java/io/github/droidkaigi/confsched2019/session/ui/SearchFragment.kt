@@ -30,15 +30,17 @@ import io.github.droidkaigi.confsched2019.di.PageScope
 import io.github.droidkaigi.confsched2019.ext.android.changed
 import io.github.droidkaigi.confsched2019.ext.android.requireValue
 import io.github.droidkaigi.confsched2019.item.DividerItem
+import io.github.droidkaigi.confsched2019.model.ServiceSession
 import io.github.droidkaigi.confsched2019.model.Session
+import io.github.droidkaigi.confsched2019.model.SpeechSession
 import io.github.droidkaigi.confsched2019.model.defaultLang
 import io.github.droidkaigi.confsched2019.session.R
 import io.github.droidkaigi.confsched2019.session.databinding.FragmentSearchBinding
 import io.github.droidkaigi.confsched2019.session.ui.actioncreator.SearchActionCreator
-import io.github.droidkaigi.confsched2019.session.ui.store.SearchStore
 import io.github.droidkaigi.confsched2019.session.ui.item.ServiceSessionItem
 import io.github.droidkaigi.confsched2019.session.ui.item.SpeakerItem
 import io.github.droidkaigi.confsched2019.session.ui.item.SpeechSessionItem
+import io.github.droidkaigi.confsched2019.session.ui.store.SearchStore
 import io.github.droidkaigi.confsched2019.session.ui.store.SessionContentsStore
 import io.github.droidkaigi.confsched2019.session.ui.widget.DaggerFragment
 import me.tatarka.injectedvmprovider.InjectedViewModelProviders
@@ -102,7 +104,7 @@ class SearchFragment : DaggerFragment() {
             items += Section().apply {
                 val sessions = result.sessions.map<Session, Item<*>> { session ->
                     when (session) {
-                        is Session.SpeechSession ->
+                        is SpeechSession ->
                             speechSessionItemFactory.create(
                                 session,
                                 SearchFragmentDirections.actionSearchToSessionDetail(
@@ -110,7 +112,7 @@ class SearchFragment : DaggerFragment() {
                                 ),
                                 false
                             )
-                        is Session.ServiceSession ->
+                        is ServiceSession ->
                             serviceSessionItemFactory.create(
                                 session,
                                 SearchFragmentDirections.actionSearchToSessionDetail(
@@ -304,13 +306,16 @@ abstract class SearchFragmentModule {
 
     @Module
     companion object {
-        @JvmStatic @Provides
+        @JvmStatic
+        @Provides
         @PageScope
         fun providesLifecycle(searchFragment: SearchFragment): Lifecycle {
             return searchFragment.viewLifecycleOwner.lifecycle
         }
 
-        @JvmStatic @Provides fun provideActivity(
+        @JvmStatic
+        @Provides
+        fun provideActivity(
             searchFragment: SearchFragment
         ): FragmentActivity {
             return searchFragment.requireActivity()

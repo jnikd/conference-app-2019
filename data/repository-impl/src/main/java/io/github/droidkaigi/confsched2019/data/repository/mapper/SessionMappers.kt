@@ -8,10 +8,12 @@ import io.github.droidkaigi.confsched2019.data.db.entity.SpeakerEntity
 import io.github.droidkaigi.confsched2019.model.Category
 import io.github.droidkaigi.confsched2019.model.LocaledString
 import io.github.droidkaigi.confsched2019.model.Room
+import io.github.droidkaigi.confsched2019.model.ServiceSession
 import io.github.droidkaigi.confsched2019.model.Session
 import io.github.droidkaigi.confsched2019.model.SessionFeedback
 import io.github.droidkaigi.confsched2019.model.SessionType
 import io.github.droidkaigi.confsched2019.model.Speaker
+import io.github.droidkaigi.confsched2019.model.SpeechSession
 
 private val jstOffset = 9.hours
 
@@ -21,7 +23,7 @@ fun SessionWithSpeakers.toSession(
     firstDay: DateTime
 ): Session {
     return if (session.isServiceSession) {
-        Session.ServiceSession(
+        ServiceSession(
             id = session.id,
             // dayNumber is starts with 1.
             // Example: First day = 1, Second day = 2. So I plus 1 to period days
@@ -47,7 +49,7 @@ fun SessionWithSpeakers.toSession(
             speakerEntity.toSpeaker()
         }
         require(speakers.isNotEmpty())
-        Session.SpeechSession(
+        SpeechSession(
             id = session.id,
             // dayNumber is starts with 1.
             // Example: First day = 1, Second day = 2. So I plus 1 to period days

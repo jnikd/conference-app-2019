@@ -6,15 +6,17 @@ import com.soywiz.klock.minutes
 import io.github.droidkaigi.confsched2019.model.Category
 import io.github.droidkaigi.confsched2019.model.LocaledString
 import io.github.droidkaigi.confsched2019.model.Room
+import io.github.droidkaigi.confsched2019.model.ServiceSession
 import io.github.droidkaigi.confsched2019.model.Session
 import io.github.droidkaigi.confsched2019.model.SessionType
+import io.github.droidkaigi.confsched2019.model.SpeechSession
 
 private val startTime =
     DateTime.createAdjusted(2019, 2, 7, 10, 0).toOffsetUnadjusted(9.hours).utc
 
 fun dummySessionData(): List<Session> {
     return listOf(
-        Session.ServiceSession(
+        ServiceSession(
             "0",
             1,
             startTime,
@@ -26,7 +28,7 @@ fun dummySessionData(): List<Session> {
             true
         ),
         firstDummySpeechSession(),
-        Session.SpeechSession(
+        SpeechSession(
             id = "2",
             dayNumber = 1,
             startTime = startTime + 100.minutes,
@@ -52,8 +54,8 @@ fun dummySessionData(): List<Session> {
     )
 }
 
-fun firstDummySpeechSession(): Session.SpeechSession {
-    return Session.SpeechSession(
+fun firstDummySpeechSession(): SpeechSession {
+    return SpeechSession(
         id = "1",
         dayNumber = 1,
         startTime = startTime + 60.minutes,

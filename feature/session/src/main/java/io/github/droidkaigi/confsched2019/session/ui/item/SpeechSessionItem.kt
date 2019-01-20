@@ -18,8 +18,8 @@ import com.squareup.inject.assisted.AssistedInject
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 import com.xwray.groupie.databinding.BindableItem
-import io.github.droidkaigi.confsched2019.model.Session
 import io.github.droidkaigi.confsched2019.model.Speaker
+import io.github.droidkaigi.confsched2019.model.SpeechSession
 import io.github.droidkaigi.confsched2019.model.defaultLang
 import io.github.droidkaigi.confsched2019.session.R
 import io.github.droidkaigi.confsched2019.session.databinding.ItemSessionBinding
@@ -29,7 +29,7 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import kotlin.math.max
 
 class SpeechSessionItem @AssistedInject constructor(
-    @Assisted override val session: Session.SpeechSession,
+    @Assisted override val session: SpeechSession,
     @Assisted val navDirections: NavDirections,
     @Assisted val hasStartPadding: Boolean,
     val navController: NavController,
@@ -42,7 +42,7 @@ class SpeechSessionItem @AssistedInject constructor(
     @AssistedInject.Factory
     interface Factory {
         fun create(
-            session: Session.SpeechSession,
+            session: SpeechSession,
             navDirections: NavDirections,
             hasStartPadding: Boolean
         ): SpeechSessionItem
