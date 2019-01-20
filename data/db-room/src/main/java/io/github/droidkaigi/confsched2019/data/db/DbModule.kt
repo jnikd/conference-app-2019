@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import io.github.droidkaigi.confsched2019.data.db.dao.AnnouncementDao
 import io.github.droidkaigi.confsched2019.data.db.dao.SessionDao
+import io.github.droidkaigi.confsched2019.data.db.dao.SessionFeedbackDao
 import io.github.droidkaigi.confsched2019.data.db.dao.SessionSpeakerJoinDao
 import io.github.droidkaigi.confsched2019.data.db.dao.SpeakerDao
 import io.github.droidkaigi.confsched2019.data.db.dao.SponsorDao
@@ -53,6 +54,10 @@ internal abstract class DbModule {
 
         @JvmStatic @Provides fun announcementDao(database: CacheDatabase): AnnouncementDao {
             return database.announcementDao()
+        }
+
+        @JvmStatic @Provides fun sessionFeedbackDao(database: CacheDatabase): SessionFeedbackDao {
+            return database.sessionFeedbackDao()
         }
     }
 }

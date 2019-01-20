@@ -2,12 +2,14 @@ package io.github.droidkaigi.confsched2019.data.repository.mapper
 
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.hours
+import io.github.droidkaigi.confsched2019.data.db.entity.SessionFeedbackEntity
 import io.github.droidkaigi.confsched2019.data.db.entity.SessionWithSpeakers
 import io.github.droidkaigi.confsched2019.data.db.entity.SpeakerEntity
 import io.github.droidkaigi.confsched2019.model.Category
 import io.github.droidkaigi.confsched2019.model.LocaledString
 import io.github.droidkaigi.confsched2019.model.Room
 import io.github.droidkaigi.confsched2019.model.Session
+import io.github.droidkaigi.confsched2019.model.SessionFeedback
 import io.github.droidkaigi.confsched2019.model.SessionType
 import io.github.droidkaigi.confsched2019.model.Speaker
 
@@ -97,3 +99,15 @@ fun SpeakerEntity.toSpeaker(): Speaker = Speaker(
     blogUrl = blogUrl,
     githubUrl = githubUrl
 )
+
+fun SessionFeedbackEntity.toSessionFeedback(): SessionFeedback =
+    SessionFeedback(
+        sessionId = sessionId,
+        totalEvaluation = totalEvaluation,
+        relevancy = relevancy,
+        asExpected = asExpected,
+        difficulty = difficulty,
+        knowledgeable = knowledgeable,
+        comment = comment,
+        submitted = submitted
+    )

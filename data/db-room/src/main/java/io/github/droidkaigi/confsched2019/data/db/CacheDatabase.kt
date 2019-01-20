@@ -11,7 +11,7 @@ import io.github.droidkaigi.confsched2019.data.db.dao.SpeakerDao
 import io.github.droidkaigi.confsched2019.data.db.dao.SponsorDao
 import io.github.droidkaigi.confsched2019.data.db.entity.AnnouncementEntityImpl
 import io.github.droidkaigi.confsched2019.data.db.entity.SessionEntityImpl
-import io.github.droidkaigi.confsched2019.data.db.entity.SessionFeedbackImpl
+import io.github.droidkaigi.confsched2019.data.db.entity.SessionFeedbackEntityImpl
 import io.github.droidkaigi.confsched2019.data.db.entity.SessionSpeakerJoinEntityImpl
 import io.github.droidkaigi.confsched2019.data.db.entity.SpeakerEntityImpl
 import io.github.droidkaigi.confsched2019.data.db.entity.SponsorEntityImpl
@@ -22,7 +22,7 @@ import io.github.droidkaigi.confsched2019.data.db.entity.SponsorEntityImpl
         (SpeakerEntityImpl::class),
         (SessionSpeakerJoinEntityImpl::class),
         (SponsorEntityImpl::class),
-        (SessionFeedbackImpl::class),
+        (SessionFeedbackEntityImpl::class),
         (AnnouncementEntityImpl::class)
     ],
     version = 11
